@@ -1,9 +1,9 @@
-//Покупатели. Сырный отдел в супермаркете непрерывно собирает голодных покупателями.
-//2 типа покупателей: храбрые покупатели и смиренные покупатели
-//Запрос на обслуживание обозначен действием “getCheese”
-//Завершение обслуживания обозначено действием “Cheese”
-//Всегда есть доступный сыр, и постоянное количество двух храбрых покупателей и двух смиренных
-//Каждый покупатель должен быть создан в виде отдельной нити, которая входит в очередь, обслуживается, и прекращает работу.
+//РџРѕРєСѓРїР°С‚РµР»Рё. РЎС‹СЂРЅС‹Р№ РѕС‚РґРµР» РІ СЃСѓРїРµСЂРјР°СЂРєРµС‚Рµ РЅРµРїСЂРµСЂС‹РІРЅРѕ СЃРѕР±РёСЂР°РµС‚ РіРѕР»РѕРґРЅС‹С… РїРѕРєСѓРїР°С‚РµР»СЏРјРё.
+//2 С‚РёРїР° РїРѕРєСѓРїР°С‚РµР»РµР№: С…СЂР°Р±СЂС‹Рµ РїРѕРєСѓРїР°С‚РµР»Рё Рё СЃРјРёСЂРµРЅРЅС‹Рµ РїРѕРєСѓРїР°С‚РµР»Рё
+//Р—Р°РїСЂРѕСЃ РЅР° РѕР±СЃР»СѓР¶РёРІР°РЅРёРµ РѕР±РѕР·РЅР°С‡РµРЅ РґРµР№СЃС‚РІРёРµРј вЂњgetCheeseвЂќ
+//Р—Р°РІРµСЂС€РµРЅРёРµ РѕР±СЃР»СѓР¶РёРІР°РЅРёСЏ РѕР±РѕР·РЅР°С‡РµРЅРѕ РґРµР№СЃС‚РІРёРµРј вЂњCheeseвЂќ
+//Р’СЃРµРіРґР° РµСЃС‚СЊ РґРѕСЃС‚СѓРїРЅС‹Р№ СЃС‹СЂ, Рё РїРѕСЃС‚РѕСЏРЅРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РґРІСѓС… С…СЂР°Р±СЂС‹С… РїРѕРєСѓРїР°С‚РµР»РµР№ Рё РґРІСѓС… СЃРјРёСЂРµРЅРЅС‹С…
+//РљР°Р¶РґС‹Р№ РїРѕРєСѓРїР°С‚РµР»СЊ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЃРѕР·РґР°РЅ РІ РІРёРґРµ РѕС‚РґРµР»СЊРЅРѕР№ РЅРёС‚Рё, РєРѕС‚РѕСЂР°СЏ РІС…РѕРґРёС‚ РІ РѕС‡РµСЂРµРґСЊ, РѕР±СЃР»СѓР¶РёРІР°РµС‚СЃСЏ, Рё РїСЂРµРєСЂР°С‰Р°РµС‚ СЂР°Р±РѕС‚Сѓ.
 package ShopCheese;
 
 public class ToGetCheese {
@@ -15,7 +15,7 @@ public class ToGetCheese {
 		Thread brave = new Thread(new BraveBuyer());
 		Thread humble = new Thread(new HumbleBuyer());
 		//brave.setPriority(Thread.MAX_PRIORITY);
-		//// Применение join() для ожидания завершения потоков.
+		//// РџСЂРёРјРµРЅРµРЅРёРµ join() РґР»СЏ РѕР¶РёРґР°РЅРёСЏ Р·Р°РІРµСЂС€РµРЅРёСЏ РїРѕС‚РѕРєРѕРІ.
 		
 		brave.start();
 		try {
@@ -31,14 +31,14 @@ public class ToGetCheese {
             e.printStackTrace();
         }
 	    
-	  //даем всем потокам возможность закончить выполнение перед тем, как программа (главный поток) закончит свое выполнение
+	  //РґР°РµРј РІСЃРµРј РїРѕС‚РѕРєР°Рј РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ Р·Р°РєРѕРЅС‡РёС‚СЊ РІС‹РїРѕР»РЅРµРЅРёРµ РїРµСЂРµРґ С‚РµРј, РєР°Рє РїСЂРѕРіСЂР°РјРјР° (РіР»Р°РІРЅС‹Р№ РїРѕС‚РѕРє) Р·Р°РєРѕРЅС‡РёС‚ СЃРІРѕРµ РІС‹РїРѕР»РЅРµРЅРёРµ
 	    try {
 	       brave.join();
 	       humble.join();
 	    } catch (InterruptedException e) {
 	        e.printStackTrace();
 	    }
-	    System.out.println("Все купили сыр, завершаем программу.");
+	    System.out.println("Р’СЃРµ РєСѓРїРёР»Рё СЃС‹СЂ, Р·Р°РІРµСЂС€Р°РµРј РїСЂРѕРіСЂР°РјРјСѓ.");
     }
 	       
     static class BraveBuyer implements Runnable {
@@ -46,14 +46,14 @@ public class ToGetCheese {
 		public void run() {
 			while (!Thread.currentThread().isInterrupted()) {
 				synchronized (lock1) {
-					System.out.println("BraveBuyer is " + Thread.currentThread().getName() + "  хочет купить сыр");
+					System.out.println("BraveBuyer is " + Thread.currentThread().getName() + "  С…РѕС‡РµС‚ РєСѓРїРёС‚СЊ СЃС‹СЂ");
 					try {
-						System.out.println("BraveBuyer is " + Thread.currentThread().getName() + "  проходит без очереди к кассе");
+						System.out.println("BraveBuyer is " + Thread.currentThread().getName() + "  РїСЂРѕС…РѕРґРёС‚ Р±РµР· РѕС‡РµСЂРµРґРё Рє РєР°СЃСЃРµ");
 						lock1.wait();
 					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
-					System.out.println("BraveBuyer is " + Thread.currentThread().getName() + "  получает сыр");
+					System.out.println("BraveBuyer is " + Thread.currentThread().getName() + "  РїРѕР»СѓС‡Р°РµС‚ СЃС‹СЂ");
 				}
 			}
 		}
@@ -65,10 +65,10 @@ public class ToGetCheese {
 		@Override
 		public void run() {
 				while (!Thread.currentThread().isInterrupted()) {
-				System.out.println("HumbleBuyer is " + Thread.currentThread().getName() + "  хочет купить сыр");
+				System.out.println("HumbleBuyer is " + Thread.currentThread().getName() + "  С…РѕС‡РµС‚ РєСѓРїРёС‚СЊ СЃС‹СЂ");
 				try {
-					System.out.println("HumbleBuyer is " + Thread.currentThread().getName() + "  ждет, пока наглый покупатель купит сыр");
-					System.out.println("HumbleBuyer is " + Thread.currentThread().getName() + "  получает сыр ");
+					System.out.println("HumbleBuyer is " + Thread.currentThread().getName() + "  Р¶РґРµС‚, РїРѕРєР° РЅР°РіР»С‹Р№ РїРѕРєСѓРїР°С‚РµР»СЊ РєСѓРїРёС‚ СЃС‹СЂ");
+					System.out.println("HumbleBuyer is " + Thread.currentThread().getName() + "  РїРѕР»СѓС‡Р°РµС‚ СЃС‹СЂ ");
 					Thread.sleep(500);
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
