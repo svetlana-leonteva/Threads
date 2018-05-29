@@ -2,19 +2,22 @@
 //2 типа покупателей: храбрые покупатели и смиренные покупатели
 //Запрос на обслуживание обозначен действием “getCheese”
 //Завершение обслуживания обозначено действием “Cheese”
-//Всегда есть доступный сыр, и постоянное количество двух храбрых покупателей и двух смиренных
+//Всегда есть доступный сыр и постоянное количество покупателей
 //Каждый покупатель должен быть создан в виде отдельной нити, которая входит в очередь, обслуживается, и прекращает работу.
+
 package ShopCheese;
+
+import java.io.IOException;
 
 public class ToGetCheese {
 
 	static Object lock1 = new Object();
 	
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 
 		Thread brave = new Thread(new BraveBuyer());
 		Thread humble = new Thread(new HumbleBuyer());
-		//brave.setPriority(Thread.MAX_PRIORITY);
+		
 		//// Применение join() для ожидания завершения потоков.
 		
 		brave.start();
