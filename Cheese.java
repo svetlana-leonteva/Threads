@@ -1,9 +1,9 @@
-//Покупатели. Сырный отдел в супермаркете непрерывно собирает голодных покупателями.
-//2 типа покупателей: храбрые покупатели и смиренные покупатели
-//Запрос на обслуживание обозначен действием “getCheese”
-//Завершение обслуживания обозначено действием “Cheese”
-//Всегда есть доступный сыр и постоянное количество покупателей
-//Каждый покупатель должен быть создан в виде отдельной нити, которая входит в очередь, обслуживается, и прекращает работу.
+//РџРѕРєСѓРїР°С‚РµР»Рё. РЎС‹СЂРЅС‹Р№ РѕС‚РґРµР» РІ СЃСѓРїРµСЂРјР°СЂРєРµС‚Рµ РЅРµРїСЂРµСЂС‹РІРЅРѕ СЃРѕР±РёСЂР°РµС‚ РіРѕР»РѕРґРЅС‹С… РїРѕРєСѓРїР°С‚РµР»СЏРјРё.
+//2 С‚РёРїР° РїРѕРєСѓРїР°С‚РµР»РµР№: С…СЂР°Р±СЂС‹Рµ РїРѕРєСѓРїР°С‚РµР»Рё Рё СЃРјРёСЂРµРЅРЅС‹Рµ РїРѕРєСѓРїР°С‚РµР»Рё
+//Р—Р°РїСЂРѕСЃ РЅР° РѕР±СЃР»СѓР¶РёРІР°РЅРёРµ РѕР±РѕР·РЅР°С‡РµРЅ РґРµР№СЃС‚РІРёРµРј вЂњgetCheeseвЂќ
+//Р—Р°РІРµСЂС€РµРЅРёРµ РѕР±СЃР»СѓР¶РёРІР°РЅРёСЏ РѕР±РѕР·РЅР°С‡РµРЅРѕ РґРµР№СЃС‚РІРёРµРј вЂњCheeseвЂќ
+//Р’СЃРµРіРґР° РµСЃС‚СЊ РґРѕСЃС‚СѓРїРЅС‹Р№ СЃС‹СЂ Рё РїРѕСЃС‚РѕСЏРЅРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРєСѓРїР°С‚РµР»РµР№
+//РљР°Р¶РґС‹Р№ РїРѕРєСѓРїР°С‚РµР»СЊ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЃРѕР·РґР°РЅ РІ РІРёРґРµ РѕС‚РґРµР»СЊРЅРѕР№ РЅРёС‚Рё, РєРѕС‚РѕСЂР°СЏ РІС…РѕРґРёС‚ РІ РѕС‡РµСЂРµРґСЊ, РѕР±СЃР»СѓР¶РёРІР°РµС‚СЃСЏ, Рё РїСЂРµРєСЂР°С‰Р°РµС‚ СЂР°Р±РѕС‚Сѓ.
 
 package CheeseShop;
 
@@ -19,11 +19,12 @@ public class Cheese {
 		private static class Buyer implements Runnable, Comparable<Buyer> {
 
 			 private String name;
-			 Buyer(String name){
-			         
-			        this.name = name;
+			 public Buyer(String B){
+			         this.name = B;
 			    }
-			    String getName(){return name;}
+			   public String getName(){
+				   return name;
+				   }
 			     
 			    public int compareTo1(Buyer B){
 			     
@@ -37,13 +38,14 @@ public class Cheese {
 				public void run() {
 				while (!Thread.currentThread().isInterrupted()) {
 						synchronized (lock1) {
-						System.out.println(Thread.currentThread().getName() + " sends a request getCheese");
+						System.out.println(Thread.currentThread().getName() + " sends the request getCheese");
 						try {
 							lock1.wait();
 						} catch (InterruptedException e1) {
 							e1.printStackTrace();
 						}
-						System.out.println(Thread.currentThread().getName() + " gets the Cheese ");
+						int compareTo1 = new Random().nextInt(10);
+						System.out.println(Thread.currentThread().getName() + " gets the Cheese " + compareTo1);
 					}
 				}
 			}
@@ -66,8 +68,7 @@ public class Cheese {
 					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
-					int type = new Random().nextInt(10);
-					System.out.println(Thread.currentThread().getName() + " executes the request " + type);
+					System.out.println(Thread.currentThread().getName() + " executes the request ");
 					synchronized (lock1) {
 						lock1.notify();
 					}
@@ -86,14 +87,12 @@ public class Cheese {
 				t2.join();
 				
 				Queue Buyer = new LinkedList();
-				for (int i = 0;  i < 10; i++){
+			    for (int i = 0;  i < 10; i++){
 					Buyer = (Queue) new Buyer ();
-					Buyer.add ("Brave");
-					Buyer.add ("Humble");
+					Buyer.add (new Buyer ("Brave"));
+					Buyer.add (new Buyer ("Humble"));
 
-					
 			}
-
 		}  
 	}
 }
